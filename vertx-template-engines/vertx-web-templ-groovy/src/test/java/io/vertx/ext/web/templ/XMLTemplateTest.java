@@ -10,7 +10,7 @@ import io.vertx.ext.web.templ.GroovyTemplateTestBase;
 public class XMLTemplateTest extends GroovyTemplateTestBase {
 
   @Override
-  protected TemplateEngine createTemplateEngine() {
+  protected TemplateEngine createGroovyEngine() {
     try {
       return new XmlTemplateEngine();
     } catch (Exception e) {

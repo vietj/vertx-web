@@ -1,0 +1,26 @@
+= Cheatsheets
+
+[[MarkupConfig]]
+== MarkupConfig
+
+++++
+ @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+++++
+'''
+
+[cols=">25%,^25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[autoEscape]]`autoEscape`|`Boolean`|-
+|[[autoIndent]]`autoIndent`|`Boolean`|-
+|[[autoIndentString]]`autoIndentString`|`String`|-
+|[[autoNewLine]]`autoNewLine`|`Boolean`|-
+|[[cacheTemplates]]`cacheTemplates`|`Boolean`|-
+|[[declarationEncoding]]`declarationEncoding`|`String`|-
+|[[expandEmptyElements]]`expandEmptyElements`|`Boolean`|-
+|[[locale]]`locale`|`String`|-
+|[[newLineString]]`newLineString`|`String`|-
+|[[useDoubleQuotes]]`useDoubleQuotes`|`Boolean`|-
+|===
+

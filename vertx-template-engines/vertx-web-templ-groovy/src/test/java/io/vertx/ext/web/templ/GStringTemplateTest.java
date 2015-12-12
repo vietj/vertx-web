@@ -11,7 +11,7 @@ import io.vertx.ext.web.templ.GroovyTemplateTestBase;
 public class GStringTemplateTest extends GroovyTemplateTestBase {
 
   @Override
-  protected TemplateEngine createTemplateEngine() {
+  protected TemplateEngine createGroovyEngine() {
     return new GStringTemplateEngine(Utils.getClassLoader());
   }
 

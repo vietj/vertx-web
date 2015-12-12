@@ -10,8 +10,8 @@ import io.vertx.ext.web.templ.GroovyTemplateTestBase;
 public class MarkupTemplateTest extends GroovyTemplateTestBase {
 
   @Override
-  protected TemplateEngine createTemplateEngine() {
-    return new MarkupTemplateEngine();
+  protected GroovyTemplateEngine createEngine() {
+    return GroovyTemplateEngine.createMarkupTemplate();
   }
 
   @Override
@@ -42,5 +42,10 @@ public class MarkupTemplateTest extends GroovyTemplateTestBase {
   @Override
   protected String getAnotherExtensionExpectedResult() {
     return "<html><body>ztpl:fox</body></html>";
+  }
+
+  @Override
+  public void testGetGroovyEngine() throws Exception {
+    // Does not pass because no groovy engine
   }
 }

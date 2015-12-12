@@ -18,6 +18,7 @@ package io.vertx.groovy.ext.web.templ;
 import groovy.transform.CompileStatic
 import io.vertx.lang.groovy.InternalHelper
 import io.vertx.core.json.JsonObject
+import io.vertx.ext.web.templ.MarkupConfig
 /**
  * A simple wrapper for Groovy template engines to be used as
  * Vert.x template engines
@@ -31,6 +32,23 @@ public class GroovyTemplateEngine extends TemplateEngine {
   }
   public Object getDelegate() {
     return delegate;
+  }
+  /**
+   * Create a template engine using defaults
+   * @return the engine
+   */
+  public static GroovyTemplateEngine createMarkupTemplate() {
+    def ret= InternalHelper.safeCreate(io.vertx.ext.web.templ.GroovyTemplateEngine.createMarkupTemplate(), io.vertx.groovy.ext.web.templ.GroovyTemplateEngine.class);
+    return ret;
+  }
+  /**
+   * Create a template engine using defaults
+   * @param config  (see <a href="../../../../../../../../cheatsheet/MarkupConfig.html">MarkupConfig</a>)
+   * @return the engine
+   */
+  public static GroovyTemplateEngine createMarkupTemplate(Map<String, Object> config) {
+    def ret= InternalHelper.safeCreate(io.vertx.ext.web.templ.GroovyTemplateEngine.createMarkupTemplate(config != null ? new io.vertx.ext.web.templ.MarkupConfig(new io.vertx.core.json.JsonObject(config)) : null), io.vertx.groovy.ext.web.templ.GroovyTemplateEngine.class);
+    return ret;
   }
   /**
    * Set the extension for the engine

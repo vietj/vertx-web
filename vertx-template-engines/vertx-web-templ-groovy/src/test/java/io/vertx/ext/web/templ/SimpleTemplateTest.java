@@ -11,7 +11,7 @@ import io.vertx.ext.web.templ.GroovyTemplateTestBase;
 public class SimpleTemplateTest extends GroovyTemplateTestBase {
 
   @Override
-  protected TemplateEngine createTemplateEngine() {
+  protected TemplateEngine createGroovyEngine() {
     return new SimpleTemplateEngine(Utils.getClassLoader());
   }
 

@@ -16,6 +16,17 @@ module VertxWeb
     def j_del
       @j_del
     end
+    #  Create a template engine using defaults
+    # @param [Hash] config 
+    # @return [::VertxWeb::GroovyTemplateEngine] the engine
+    def self.create_markup_template(config=nil)
+      if !block_given? && config == nil
+        return ::Vertx::Util::Utils.safe_create(Java::IoVertxExtWebTempl::GroovyTemplateEngine.java_method(:createMarkupTemplate, []).call(),::VertxWeb::GroovyTemplateEngine)
+      elsif config.class == Hash && !block_given?
+        return ::Vertx::Util::Utils.safe_create(Java::IoVertxExtWebTempl::GroovyTemplateEngine.java_method(:createMarkupTemplate, [Java::IoVertxExtWebTempl::MarkupConfig.java_class]).call(Java::IoVertxExtWebTempl::MarkupConfig.new(::Vertx::Util::Utils.to_json_object(config))),::VertxWeb::GroovyTemplateEngine)
+      end
+      raise ArgumentError, "Invalid arguments when calling create_markup_template(config)"
+    end
     #  Set the extension for the engine
     # @param [String] extension the extension
     # @return [::VertxWeb::GroovyTemplateEngine] a reference to this for fluency

@@ -1,7 +1,9 @@
 package io.vertx.ext.web.templ;
 
+import groovy.text.markup.MarkupTemplateEngine;
 import io.vertx.codegen.annotations.GenIgnore;
 import io.vertx.codegen.annotations.VertxGen;
+import io.vertx.core.Vertx;
 import io.vertx.ext.web.templ.impl.GroovyTemplateEngineImpl;
 
 /**
@@ -33,6 +35,26 @@ public interface GroovyTemplateEngine extends TemplateEngine {
     return new GroovyTemplateEngineImpl(groovyEngine);
   }
 
+  /**
+   * Create a template engine using defaults
+   *
+   * @return the engine
+   */
+  static GroovyTemplateEngine createMarkupTemplate() {
+    return new GroovyTemplateEngineImpl(new MarkupTemplateEngine());
+  }
+
+
+  /**
+   * Create a template engine using defaults
+   *
+   * @return the engine
+   */
+  static GroovyTemplateEngine createMarkupTemplate(MarkupConfig config) {
+    return new GroovyTemplateEngineImpl(new MarkupTemplateEngine(
+        MarkupTemplateEngine.class.getClassLoader(),
+        config.toConfiguration()));
+  }
   /**
    * Set the extension for the engine
    *

@@ -32,7 +32,13 @@ public abstract class GroovyTemplateTestBase extends WebTestBase {
   private groovy.text.TemplateEngine groovyEngine;
   private GroovyTemplateEngine engine;
 
-  abstract protected groovy.text.TemplateEngine createTemplateEngine();
+  protected groovy.text.TemplateEngine createGroovyEngine() {
+    throw new UnsupportedOperationException("Implement me");
+  }
+
+  protected GroovyTemplateEngine createEngine() {
+    return GroovyTemplateEngine.create(groovyEngine = createGroovyEngine());
+  }
 
   abstract protected String getFSTemplateName();
 
@@ -48,8 +54,7 @@ public abstract class GroovyTemplateTestBase extends WebTestBase {
 
   @Before
   public void initTemplateEngine() {
-    groovyEngine = createTemplateEngine();
-    engine = GroovyTemplateEngine.create(groovyEngine);
+    engine = createEngine();
   }
 
   @Test

@@ -21,6 +21,7 @@ var TemplateEngine = require('vertx-web-js/template_engine');
 var io = Packages.io;
 var JsonObject = io.vertx.core.json.JsonObject;
 var JGroovyTemplateEngine = io.vertx.ext.web.templ.GroovyTemplateEngine;
+var MarkupConfig = io.vertx.ext.web.templ.MarkupConfig;
 
 /**
  A simple wrapper for Groovy template engines to be used as
@@ -66,6 +67,22 @@ var GroovyTemplateEngine = function(j_val) {
   // NOTE! This is an internal API and must not be used in user code.
   // If you rely on this property your code is likely to break if we change it / remove it without warning.
   this._jdel = j_groovyTemplateEngine;
+};
+
+/**
+ Create a template engine using defaults
+
+ @memberof module:vertx-web-js/groovy_template_engine
+ @param config {Object} 
+ @return {GroovyTemplateEngine} the engine
+ */
+GroovyTemplateEngine.createMarkupTemplate = function() {
+  var __args = arguments;
+  if (__args.length === 0) {
+    return utils.convReturnVertxGen(JGroovyTemplateEngine["createMarkupTemplate()"](), GroovyTemplateEngine);
+  }else if (__args.length === 1 && (typeof __args[0] === 'object' && __args[0] != null)) {
+    return utils.convReturnVertxGen(JGroovyTemplateEngine["createMarkupTemplate(io.vertx.ext.web.templ.MarkupConfig)"](__args[0] != null ? new MarkupConfig(new JsonObject(JSON.stringify(__args[0]))) : null), GroovyTemplateEngine);
+  } else throw new TypeError('function invoked with invalid arguments');
 };
 
 // We export the Constructor function

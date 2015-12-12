@@ -22,6 +22,7 @@ package io.vertx.ext.web;
  * @author <a href="mailto:plopes@redhat.com">Paulo Lopes</a>
  */
 
+import io.vertx.codegen.annotations.GenIgnore;
 import io.vertx.codegen.annotations.VertxGen;
 import io.vertx.ext.web.impl.LocaleImpl;
 
@@ -29,7 +30,11 @@ import io.vertx.ext.web.impl.LocaleImpl;
 public interface Locale {
 
   static Locale create() {
-    final java.util.Locale locale = java.util.Locale.getDefault();
+    return create(java.util.Locale.getDefault());
+  }
+
+  @GenIgnore
+  static Locale create(java.util.Locale locale) {
     return new LocaleImpl(locale.getLanguage(), locale.getCountry(), locale.getVariant());
   }
 

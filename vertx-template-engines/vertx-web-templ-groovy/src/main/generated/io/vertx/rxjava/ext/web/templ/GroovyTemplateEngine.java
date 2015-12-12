@@ -19,6 +19,7 @@ package io.vertx.rxjava.ext.web.templ;
 import java.util.Map;
 import io.vertx.lang.rxjava.InternalHelper;
 import rx.Observable;
+import io.vertx.ext.web.templ.MarkupConfig;
 
 /**
  * A simple wrapper for Groovy template engines to be used as
@@ -39,6 +40,25 @@ public class GroovyTemplateEngine extends TemplateEngine {
 
   public Object getDelegate() {
     return delegate;
+  }
+
+  /**
+   * Create a template engine using defaults
+   * @return the engine
+   */
+  public static GroovyTemplateEngine createMarkupTemplate() { 
+    GroovyTemplateEngine ret= GroovyTemplateEngine.newInstance(io.vertx.ext.web.templ.GroovyTemplateEngine.createMarkupTemplate());
+    return ret;
+  }
+
+  /**
+   * Create a template engine using defaults
+   * @param config 
+   * @return the engine
+   */
+  public static GroovyTemplateEngine createMarkupTemplate(MarkupConfig config) { 
+    GroovyTemplateEngine ret= GroovyTemplateEngine.newInstance(io.vertx.ext.web.templ.GroovyTemplateEngine.createMarkupTemplate(config));
+    return ret;
   }
 
   /**
