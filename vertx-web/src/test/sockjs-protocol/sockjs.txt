@@ -1,0 +1,74 @@
+INFO:utils:init ws://localhost:8081/close/websocket
+INFO:ws4py:Parsed frame opcode=8 body=¸Go away!
+DEBUG:ws4py:Closing message received (3000) 'Go away!'
+INFO:utils:push (3000,Go away!)
+
+INFO:utils:Pop ConnectionClosedException
+INFO:utils:init ws://localhost:8081/echo/websocket
+INFO:ws4py:Parsed frame opcode=2 body=Hello world!ï¿¿
+INFO:utils:push Hello world!ï¿¿
+
+INFO:utils:Pop Hello world!ï¿¿
+INFO:ws4py:Parsed frame opcode=8 body=è
+DEBUG:ws4py:Closing message received (1000) ''
+INFO:utils:push (1000,)
+
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\xff'
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\xff'
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\x00'
+DEBUG:root:recv frame: '\x00'
+INFO:utils:init ws://localhost:8081/echo/000/8beb03dc-23fb-4b92-87af-dc9201c73183/websocket
+INFO:ws4py:Parsed frame opcode=1 body=o
+INFO:ws4py:Parsed text message o
+INFO:utils:push o
+
+INFO:utils:Pop o
+INFO:ws4py:Parsed frame opcode=8 body=è
+DEBUG:ws4py:Closing message received (1000) ''
+INFO:utils:push (1000,)
+
+INFO:utils:Pop ConnectionClosedException
+INFO:sockjs:START TEST
+INFO:utils:init ws://localhost:8081/close/000/FOOBAR002/websocket
+INFO:ws4py:Parsed frame opcode=1 body=o
+INFO:ws4py:Parsed text message o
+INFO:utils:push o
+
+INFO:ws4py:Parsed frame opcode=1 body=c[3000,"Go away!"]
+INFO:ws4py:Parsed text message c[3000,"Go away!"]
+INFO:utils:push c[3000,"Go away!"]
+
+INFO:ws4py:Parsed frame opcode=8 body=è
+DEBUG:ws4py:Closing message received (1000) ''
+INFO:utils:push (1000,)
+
+INFO:utils:Pop o
+INFO:utils:Pop c[3000,"Go away!"]
+INFO:utils:Pop ConnectionClosedException
+INFO:sockjs:END TEST
+INFO:utils:init ws://localhost:8081/echo/000/7dbeb709-0187-4650-a752-6fc27f4f41e7/websocket
+INFO:ws4py:Parsed frame opcode=1 body=o
+INFO:ws4py:Parsed text message o
+INFO:utils:push o
+
+INFO:utils:Pop o
+INFO:ws4py:Parsed frame opcode=1 body=a["a"]
+INFO:ws4py:Parsed text message a["a"]
+INFO:utils:push a["a"]
+
+INFO:utils:Pop a["a"]
+INFO:ws4py:Parsed frame opcode=8 body=è
+DEBUG:ws4py:Closing message received (1000) ''
+INFO:utils:push (1000,)
+

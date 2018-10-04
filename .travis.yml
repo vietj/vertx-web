@@ -1,0 +1,28 @@
+language: java
+sudo: required
+branches:
+  only:
+  - master
+  - /^\d+\.\d+$/
+jobs:
+  include:
+    - stage: test
+      name: "OracleJDK 8"
+      jdk: oraclejdk8
+      script:
+        - sudo apt-get install tcpdump
+        - sudo tcpdump -i lo -s 65535 -w capture.pcap port 8081 &
+        - mvn -q clean verify -B --fail-never
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: false
+  on:
+    branch: master
+notifications:
+  email:
+    recipients:
+      - vertx3-ci@googlegroups.com
+    on_success: always
+    on_failure: always
