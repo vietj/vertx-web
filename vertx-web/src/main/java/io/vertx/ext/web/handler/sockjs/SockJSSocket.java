@@ -35,6 +35,7 @@ package io.vertx.ext.web.handler.sockjs;
 import io.vertx.codegen.annotations.Fluent;
 import io.vertx.codegen.annotations.Nullable;
 import io.vertx.codegen.annotations.VertxGen;
+import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 import io.vertx.core.MultiMap;
 import io.vertx.core.buffer.Buffer;
@@ -86,6 +87,9 @@ public interface SockJSSocket extends ReadStream<Buffer>, WriteStream<Buffer> {
   default SockJSSocket write(String data) {
     return write(Buffer.buffer(data));
   }
+
+  @Override
+  SockJSSocket write(Buffer data, Handler<AsyncResult<Void>> handler);
 
   @Override
   SockJSSocket setWriteQueueMaxSize(int maxSize);

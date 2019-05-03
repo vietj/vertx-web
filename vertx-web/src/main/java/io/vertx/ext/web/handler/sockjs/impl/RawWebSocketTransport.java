@@ -32,6 +32,7 @@
 
 package io.vertx.ext.web.handler.sockjs.impl;
 
+import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 import io.vertx.core.MultiMap;
 import io.vertx.core.Vertx;
@@ -86,6 +87,12 @@ class RawWebSocketTransport {
     @Override
     public ReadStream<Buffer> fetch(long amount) {
       ws.fetch(amount);
+      return this;
+    }
+
+    @Override
+    public SockJSSocket write(Buffer data, Handler<AsyncResult<Void>> handler) {
+      ws.writeBinaryMessage(data, handler);
       return this;
     }
 

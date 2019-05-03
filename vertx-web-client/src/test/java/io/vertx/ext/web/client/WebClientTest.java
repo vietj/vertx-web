@@ -662,12 +662,26 @@ public class WebClientTest extends HttpTestBase {
       }
       @Override
       public WriteStream<Buffer> write(Buffer data) {
+        return write(data, null);
+      }
+      @Override
+      public WriteStream<Buffer> write(Buffer data, Handler<AsyncResult<Void>> handler) {
         size.addAndGet(data.length());
+        if (handler != null) {
+          handler.handle(Future.succeededFuture());
+        }
         return this;
       }
       @Override
       public void end() {
+        end((Handler<AsyncResult<Void>>) null);
+      }
+      @Override
+      public void end(Handler<AsyncResult<Void>> handler) {
         ended.set(true);
+        if (handler != null) {
+          handler.handle(Future.succeededFuture());
+        }
       }
       @Override
       public WriteStream<Buffer> setWriteQueueMaxSize(int maxSize) {
@@ -715,11 +729,25 @@ public class WebClientTest extends HttpTestBase {
       }
       @Override
       public WriteStream<Buffer> write(Buffer data) {
+        return write(data, null);
+      }
+      @Override
+      public WriteStream<Buffer> write(Buffer data, Handler<AsyncResult<Void>> handler) {
         received.addAndGet(data.length());
+        if (handler != null) {
+          handler.handle(Future.succeededFuture());
+        }
         return this;
       }
       @Override
       public void end() {
+        end((Handler<AsyncResult<Void>>) null);
+      }
+      @Override
+      public void end(Handler<AsyncResult<Void>> handler) {
+        if (handler != null) {
+          handler.handle(Future.succeededFuture());
+        }
       }
       @Override
       public WriteStream<Buffer> setWriteQueueMaxSize(int maxSize) {
@@ -761,11 +789,23 @@ public class WebClientTest extends HttpTestBase {
       }
       @Override
       public WriteStream<Buffer> write(Buffer data) {
+        return write(data, null);
+      }
+      @Override
+      public WriteStream<Buffer> write(Buffer data, Handler<AsyncResult<Void>> handler) {
         exceptionHandler.handle(cause);
+        if (handler != null) {
+          handler.handle(Future.failedFuture(cause));
+        }
         return this;
       }
       @Override
       public void end() {
+        throw new AssertionError();
+      }
+      @Override
+      public void end(Handler<AsyncResult<Void>> handler) {
+        throw new AssertionError();
       }
       @Override
       public WriteStream<Buffer> setWriteQueueMaxSize(int maxSize) {
@@ -807,7 +847,8 @@ public class WebClientTest extends HttpTestBase {
       public AsyncFile setWriteQueueMaxSize(int i) { throw new UnsupportedOperationException(); }
       public AsyncFile drainHandler(Handler<Void> handler) { throw new UnsupportedOperationException(); }
       public AsyncFile fetch(long l) { throw new UnsupportedOperationException(); }
-      public void end() { throw new UnsupportedOperationException(); }
+      public void end() { close(null); }
+      public void end(Handler<AsyncResult<Void>> handler) { close(handler); }
       public void close() { throw new UnsupportedOperationException(); }
       public AsyncFile write(Buffer buffer, long l, Handler<AsyncResult<Void>> handler) { throw new UnsupportedOperationException(); }
       public AsyncFile read(Buffer buffer, int i, long l, int i1, Handler<AsyncResult<Buffer>> handler) { throw new UnsupportedOperationException(); }
@@ -826,7 +867,13 @@ public class WebClientTest extends HttpTestBase {
         throw new UnsupportedOperationException();
       }
       public AsyncFile write(Buffer buffer) {
+        return write(buffer, null);
+      }
+      public AsyncFile write(Buffer buffer, Handler<AsyncResult<Void>> handler) {
         received.addAndGet(buffer.length());
+        if (handler != null) {
+          handler.handle(Future.succeededFuture());
+        }
         return this;
       }
       public void close(Handler<AsyncResult<Void>> handler) {
@@ -868,12 +915,26 @@ public class WebClientTest extends HttpTestBase {
       }
       @Override
       public WriteStream<Buffer> write(Buffer data) {
+        return write(data, null);
+      }
+      @Override
+      public WriteStream<Buffer> write(Buffer data, Handler<AsyncResult<Void>> handler) {
         length.addAndGet(data.length());
+        if (handler != null) {
+          handler.handle(Future.succeededFuture());
+        }
         return this;
       }
       @Override
       public void end() {
+        end((Handler<AsyncResult<Void>>) null);
+      }
+      @Override
+      public void end(Handler<AsyncResult<Void>> handler) {
         ended.set(true);
+        if (handler != null) {
+          handler.handle(Future.succeededFuture());
+        }
       }
       @Override
       public WriteStream<Buffer> setWriteQueueMaxSize(int maxSize) {
