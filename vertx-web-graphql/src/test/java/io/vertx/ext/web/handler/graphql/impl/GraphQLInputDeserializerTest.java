@@ -18,7 +18,7 @@ package io.vertx.ext.web.handler.graphql.impl;
 
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.spi.JsonFactory;
+import io.vertx.core.spi.json.JsonMapper;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -36,7 +36,7 @@ public class GraphQLInputDeserializerTest {
   @Test
   public void testSingle() {
     JsonObject query = createQuery();
-    GraphQLInput graphQLInput = JsonFactory.factory.fromBuffer(query.toBuffer(), GraphQLInput.class);
+    GraphQLInput graphQLInput = JsonMapper.INSTANCE.fromBuffer(query.toBuffer(), GraphQLInput.class);
     assertThat(graphQLInput, is(instanceOf(GraphQLQuery.class)));
     GraphQLQuery graphQLQuery = (GraphQLQuery) graphQLInput;
     verify(graphQLQuery);
@@ -58,7 +58,7 @@ public class GraphQLInputDeserializerTest {
   @Test
   public void testBatch() {
     JsonArray batch = new JsonArray().add(createQuery());
-    GraphQLInput graphQLInput = JsonFactory.factory.fromBuffer(batch.toBuffer(), GraphQLInput.class);
+    GraphQLInput graphQLInput = JsonMapper.INSTANCE.fromBuffer(batch.toBuffer(), GraphQLInput.class);
     assertThat(graphQLInput, is(instanceOf(GraphQLBatch.class)));
     GraphQLBatch graphQLBatch = (GraphQLBatch) graphQLInput;
     assertEquals(1, graphQLBatch.size());
